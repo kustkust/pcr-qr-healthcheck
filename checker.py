@@ -1,23 +1,18 @@
 import time
 from logging import Logger
-from typing import Any
-
-from pydantic import BaseModel
 
 from status import InstanceInfo
 
 
-class Checker(BaseModel):
-    instance_type: str
-    response_interval: int
-    logger: Logger
-    last_respond_time: dict[str, float] = {}
-
+class Checker:
     class Config:
         arbitrary_types_allowed = True
 
-    def __init__(self, names, **data: Any):
-        super().__init__(**data)
+    def __init__(self, instance_type: str, response_interval: int, logger: Logger, names: list[str]):
+        self.instance_type = instance_type
+        self.response_interval = response_interval
+        self.logger = logger
+        self.last_respond_time = {}
         for name in names:
             self.last_respond_time[name] = time.time()
 
