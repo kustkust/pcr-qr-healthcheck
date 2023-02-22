@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
 
+    project_name: str
     check_interval: int
     response_interval: int
     redis_host: str
@@ -15,6 +16,4 @@ class Settings(BaseSettings):
     scripts: list[str]
     rotating_interval: int
     log_path: str
-
-
-settings = Settings()
+    local_level_log: str

@@ -6,12 +6,13 @@ from pydantic import parse_raw_as
 
 from checker import Checker
 from init_logger import init_logger
-from settings import settings
+from settings import Settings
 from status import InstanceInfo
 
 
 async def main():
-    logger = init_logger()
+    settings = Settings()
+    logger = init_logger(settings)
     checkers = {
         settings.camera_channel: Checker(instance_type="camera", response_interval=settings.response_interval,
                                          logger=logger, names=settings.cameras),
