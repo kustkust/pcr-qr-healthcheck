@@ -16,7 +16,7 @@ def init_logger(logger_setting: Settings):
         logger_setting.log_path + logger_setting.project_name + ".log",
         when='midnight',
         interval=1,
-        backupCount=logger_setting.rotating_interval
+        backupCount=logger_setting.log_backup_count
     )
     rotate_handler.setLevel(logger_setting.local_level_log)
     rotate_handler.setFormatter(

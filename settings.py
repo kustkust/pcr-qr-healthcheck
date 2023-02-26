@@ -14,6 +14,6 @@ class Settings(BaseSettings):
     script_channel: str
     cameras: list[str]
     scripts: list[str]
-    rotating_interval: int
+    log_backup_count: int
     log_path: str
     local_level_log: str
