@@ -1,0 +1,14 @@
+version: '1.0'
+services:
+  pcr-qr-healthcheck:
+    image: pcr-qr-healthcheck:latest
+    container_name: pcr-qr-healthcheck
+    restart: unless-stopped
+    network_mode: host
+    command:
+      - python3.10
+      - main.py
+    volumes:
+      - ./:/app
+    logging:
+      driver: none
