@@ -18,10 +18,19 @@ async def main():
                                          logger=logger, names=settings.cameras),
         settings.script_channel: Checker(instance_type="script", response_interval=settings.response_interval,
                                          logger=logger, names=settings.scripts),
+        settings.oven_channel: Checker(instance_type="oven", response_interval=settings.response_interval,
+                                       logger=logger, names=settings.ovens)
     }
-    r = redis.from_url("redis://" + settings.redis_host)
+    redis_host = "redis://" + settings.redis_host + ":" + str(settings.redis_port)
+    r = redis.from_url(redis_host)
     async with r.pubsub() as pubsub:
-        await pubsub.subscribe(settings.camera_channel, settings.script_channel)
+        try:
+            logger.info(f"Connecting to redis {redis_host}")
+            await pubsub.subscribe(*list(checkers.keys()))
+        except:
+            logger.error(f"Fail to connect to redis {redis_host}")
+            return
+        logger.info(f"Connect to redis {redis_host}")
         last_check_time = time.time()
         while True:
             message = await pubsub.get_message(ignore_subscribe_messages=True)

@@ -9,6 +9,9 @@ services:
       - python3.10
       - main.py
     volumes:
-      - ./:/app
+      - ./app:/app
+      - ./config:/config
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     logging:
       driver: none
