@@ -14,10 +14,10 @@ class Settings(BaseSettings):
     redis_port: int
     camera_channel: str
     script_channel: str
-    oven_channel: str
+    owen_channel: str
     cameras: list[str]
     scripts: list[str]
-    ovens: list[str]
+    owens: list[str]
     log_backup_count: int
     log_path: str
     local_level_log: str

@@ -18,8 +18,8 @@ async def main():
                                          logger=logger, names=settings.cameras),
         settings.script_channel: Checker(instance_type="script", response_interval=settings.response_interval,
                                          logger=logger, names=settings.scripts),
-        settings.oven_channel: Checker(instance_type="oven", response_interval=settings.response_interval,
-                                       logger=logger, names=settings.ovens)
+        settings.owen_channel: Checker(instance_type="owen", response_interval=settings.response_interval,
+                                       logger=logger, names=settings.owens)
     }
     redis_host = "redis://" + settings.redis_host + ":" + str(settings.redis_port)
     r = redis.from_url(redis_host)
