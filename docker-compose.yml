@@ -4,7 +4,9 @@ services:
     image: pcr-qr-healthcheck:latest
     container_name: pcr-qr-healthcheck
     restart: unless-stopped
-    network_mode: host
+    # network_mode: host
+    ports:
+      - 0.0.0.0:8000:8000
     command:
       - python3.10
       - main.py
